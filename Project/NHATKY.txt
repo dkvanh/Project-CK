@@ -1,0 +1,99 @@
+Sinh vien da them :
+
+MSSV      : 20199999
+Ho va ten : Truong Trung Hieu
+Gioi tinh : Nam
+Ngay sinh : 5/3/2001
+
+------------------------------
+
+Hoc phan da them :
+
+Ma hoc phan : MI3041
+Ten mon hoc : Giai tich so
+So tin chi  : 2
+
+------------------------------
+
+Diem hoc phan da them la :
+
+MSSV        : 20199999
+Ma hoc phan : MI1111
+Diem        : 2.0
+
+------------------------------
+
+Sinh vien 20199999 duoc sua thong tin moi :
+MSSV      : 20199999
+Ho va ten : Hieu Truong
+Gioi tinh : Nam
+Ngay sinh : 5/3/2001
+
+------------------------------
+
+Hoc phan MI3041 duoc sua moi :
+Ma hoc phan : MI3041
+Ten mon hoc : GT so
+So tin chi  : 2
+
+------------------------------
+
+Diem hoc phan MI1111 cua sinh vien 0 duoc sua moi :
+MSSV        : 20199999
+Ma hoc phan : MI1111
+Diem        : 2.5
+
+------------------------------
+
+Sinh vien bi xoa thong tin va toan bo diem lien quan :
+
+MSSV 	 : 20199999
+Ho va ten : Hieu Truong
+Gioi tinh : Nam
+Ngay sinh : 5/3/2001
+
+------------------------------
+
+Hoc phan bi xoa thong tin va toan bo diem lien quan :
+
+Ma hoc phan : MI3041
+Ten mon hoc : GT so
+So tin chi  : 2
+
+------------------------------
+
+Diem hoc phan da xoa :
+
+MSSV        : 20191234
+Ma hoc phan : MI1121
+Diem        : 4.5
+
+------------------------------
+
+MSSV : 20195855
+CPA  : 4.00
+
+------------------------------
+
+MSSV : 20195212
+CPA  : 0.86
+
+------------------------------
+
+MSSV : 20191234
+CPA  : 3.50
+
+------------------------------
+
+Sinh vien co MSSV      : 20195212 ,	ho va ten : Hoang Tuan Tu	 chua dat hoc phan MI1111
+
+------------------------------
+
+Sinh vien 20195212 chua dat hoc phan MI1111
+
+------------------------------
+
+Diem trung binh tich luy cua sinh vien 20195855 la : 4.00
+
+------------------------------
+

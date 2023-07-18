@@ -11,7 +11,7 @@ double a, b, x, x_old, fa, fb, fx, eps, m, M;
 
 FILE *fin;
 FILE *fout;
-
+//kkkkkkkk
 typedef struct element_of_The_Polynomial
 {
     int degree;

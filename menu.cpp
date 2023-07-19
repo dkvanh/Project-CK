@@ -4,14 +4,14 @@
 #include <stdio.h>
 
 int NUM, count_;
-const double h =1e-9;
+const double h = 1e-9;
 const int MAX_LOOP = 10000;
 double left = -1000.5, right = 999.5;
 double a, b, x, x_old, fa, fb, fx, eps, m, M;
 
 FILE *fin;
 FILE *fout;
-//kkkkkkkk
+
 typedef struct element_of_The_Polynomial
 {
     int degree;
@@ -30,6 +30,16 @@ NODE polynom[15];
 //---------------KHOANG PHAN LY------------------
 ICS phanly[15];
 
+//Cac ham tinh gia tri f(x), f'(x), f''(x)
+double f(double x);
+double f1(double x);
+double f2(double x);
+
+
+//Ham kiem tra dau cua ham so
+int check_sign(double x, int choose);
+
+
 void color(int color);
 void gotoxy(int x, int y);
 
@@ -42,12 +52,34 @@ void display_Function();
 //ham in cac khoang phan ly
 int printICS();
 
+//Cac ham tinh sai so
+double sai_so_1();
+double sai_so_2();
+
+//Nhom ham tim MIN MAX ham so
+double minf(double f(double x), ICS local);
+double maxf(double f(double x), ICS local);
+
+
 //Tim khoang phan ly
 void find_ICS(double temp_left, double temp_right);
+//Chia doi khoang phan ly
+int bisection_Method();
+//Ham tim nghiem voi so lan lap cho truoc
+void secant_Method_n(ICS local);
+//Ham tim nghiem voi sai so cho truoc
+void secant_Method_epsi(ICS local);
+//Ham tim nghiem sai so |x_n - x_{n-1}| < eps
+void secant_Method_e(ICS local);
+
+
+
+
 
 int main()
 {
     int hold, cnt;
+    ICS local;
     // Biến sử dụng trong layer menu 1
     int Set[] = {7, 7, 7, 7, 7, 7};
     int counter = 1;
@@ -97,16 +129,13 @@ int main()
             printf(" 6. THOAT CHUONG TRINH ");
 
             key = getch();
-            printf("%d", key);
             if (key == 72 && (counter >= 2 && counter <= 6))
             {
-                printf("%d", counter);
                 counter--;
             }
             else if (key == 80 && (counter >= 1 && counter <= 5))
             {
                 counter++;
-                printf("%d", counter);
             }
             else if (key == 72 && (counter <= 1))
             {
@@ -165,15 +194,65 @@ int main()
                 } 
                 else if (counter == 2)
                 {
-                    // Set[1] = 74;
-                    printf("\nChuong trinh 2");
-                    fprintf(fout, "\nChuong trinh 2");
+                    bisection_Method();
+                    printf("\nKhoang phan ly sau khi thu hep:  ");
+                    fprintf(fout, "\nKhoang phan ly sau khi thu hep:  ");
+                    printf("\n\t\t\t+--------|-----------|-----------+");
+                    printf("\n\t\t\t|   STT  |     a     |     b     |");
+                    printf("\n\t\t\t+--------|-----------|-----------+");
+                    fprintf(fout, "\n\t\t\t+--------|-----------|-----------+");
+                    fprintf(fout, "\n\t\t\t|   STT  |     a     |     b     |");
+                    fprintf(fout, "\n\t\t\t+--------|-----------|-----------+");
+                    for(cnt = 0; cnt < count_; cnt++)
+                    {
+                        if(phanly[cnt].a < 0 && phanly[cnt].b < 0)
+                        {
+                            printf("\n\t\t\t|   %d   |   %.3lf   |   %.3lf   |", cnt, phanly[cnt].a, phanly[cnt].b);
+                            fprintf(fout, "\n\t\t\t|   %d   |   %.3lf   |   %.3lf   |", cnt, phanly[cnt].a, phanly[cnt].b);
+                        }
+                        else if(phanly[cnt].a > 0 && phanly[cnt].b < 0)
+                        {
+                            printf("\n\t\t\t|   %d   |   %.3lf   |   %.3lf   |", cnt, phanly[cnt].a, phanly[cnt].b);
+                            fprintf(fout, "\n\t\t\t|   %d   |   %.3lf   |   %.3lf   |", cnt, phanly[cnt].a, phanly[cnt].b);
+                        }
+                        else if(phanly[cnt].a < 0 && phanly[cnt].b > 0)
+                        {
+                            printf("\n\t\t\t|   %d   |   %.3lf   |   %.3lf   |", cnt, phanly[cnt].a, phanly[cnt].b);
+                            fprintf(fout, "\n\t\t\t|   %d   |   %.3lf   |   %.3lf   |", cnt, phanly[cnt].a, phanly[cnt].b);
+                        }
+                        else
+                        {
+                            printf("\n\t\t\t|   %d   |   %.3lf   |   %.3lf   |", cnt, phanly[cnt].a, phanly[cnt].b);
+                            fprintf(fout, "\n\t\t\t|   %d   |   %.3lf   |   %.3lf   |", cnt, phanly[cnt].a, phanly[cnt].b);
+                        }
+                        printf("\n\t\t\t+--------|-----------|-----------+");
+                        fprintf(fout, "\n\t\t\t+--------|-----------|-----------+");
+                    }
                 }
                 else if (counter == 3)
                 {
-                    // Set[2] = 74;
-                    printf("\nChuong trinh 3");
-                    fprintf(fout, "\nChuong trinh 3");
+                    Set1[0] = 7;
+                    Set1[1] = 7;
+                    Set1[2] = 7;
+                    counter1 = 1;
+                    while(1)
+                    {
+                        drawframe();
+                        if(counter == 1)
+                        {
+                            Set1[0] = 74;
+                        }
+                        gotoxy(40, 6);
+                        color(Set1[0]);
+                        printf("1. Khoang phan ly nhap tu ban phim  ");
+                        gotoxy(40, 8);
+                        color(Set1[1]);
+                        printf("2. Khoang phan ly da tim duoc o truoc");
+                        gotoxy(40, 10);
+                        color(Set1[2]);
+                        printf("3. THOAT");
+                    } 
+                }
                 }
                 else if (counter == 4)
                 {
@@ -219,6 +298,7 @@ int main()
                 Set[5] = 74;
             }
         }
+        
 
         fclose(fout);
         return 1;
@@ -258,19 +338,19 @@ void drawframe()
     for (i = 0; i < 63; i++)
     {
         gotoxy(31 + i, 2);
-        printf("**");
+        printf("--");
         gotoxy(31 + i, 4);
-        printf("**");
+        printf("--");
         gotoxy(31 + i, 19);
-        printf("**");
+        printf("--");
     }
     for (i = 0; i <= 15; i++)
     {
         gotoxy(30, 2);
         gotoxy(30, 3 + i);
-        printf("*");
+        printf("||");
         gotoxy(94, 3 + i);
-        printf("*");
+        printf("||");
     }
     color(7);
 }
@@ -362,7 +442,6 @@ void menu_input()
                     scanf("%d", &NUM);
                     if (NUM <= 1) printf("\nBan da nhap sai. Vui long nhap lai voi n > 1!!!");
                 } while (NUM < 0);
-            }
             
             for (i = 0; i < NUM; i++)
             {
@@ -375,10 +454,12 @@ void menu_input()
             display_Function();
         }
 
-        /*key = getch();
-        if(key == '\r'){
-            system("cls");
-        }*/
+            key = getch();
+
+            if (key == '\r') {
+                system("cls");
+            }
+        }
         Set[0] = 7;
         Set[1] = 7;
         Set[2] = 7;
@@ -398,30 +479,72 @@ void menu_input()
 }
 // kkkkkkkkkkkk
 
-void display_Function()
-{
+void display_Function(){
     int i;
     printf("Bieu thuc: \n");
     fprintf(fout, "Bieu thuc: \n");
-    for (i = 0; i < NUM; i++)
+    for(i = 0; i < NUM; i++)
     {
-        if (polynom[i].degree == 0)
+        if(polynom[i].degree == 0)
         {
-            printf("%f", polynom[i].coefficient);
-            fprintf(fout, "%f", polynom[i].coefficient);
+            printf(" %f ", polynom[i].coefficient);
+            fprintf(fout, " %f ", polynom[i].coefficient);
         }
         else
         {
-            printf("%fx^%d", polynom[i].coefficient, polynom[i].degree);
-            fprintf(fout, "%fx^%d", polynom[i].coefficient, polynom[i].degree);
+            printf(" %fx^%d ", polynom[i].coefficient, polynom[i].degree);
+            fprintf(fout, " %fx^%d ", polynom[i].coefficient, polynom[i].degree);
         }
-        if (i < NUM - 1)
+        if(i < NUM-1)
         {
             printf("+");
             fprintf(fout, "+");
         }
     }
 }
+
+//Nhom ham tinh gia tri f(x), f'(x)
+double f(double x)
+{
+    int i;
+    double SUM = 0;
+    for (i = 0; i < NUM; i++)
+    {
+        SUM += polynom[i].coefficient * pow(x, polynom[i].degree);
+    }
+    return SUM;
+}
+
+double f1(double x)
+{
+    return (f(x + h) - f(x - h) / (2 * h));
+}
+
+
+
+int check_sign(double x, int choose){
+    int sign = 1;
+    if(choose == 0)
+    {
+        if(f(x) < 0)
+        {
+            sign = -1;
+        }
+    }
+    else if(choose == 1)
+    {
+        if(f1(x) < 0)
+        {
+            sign = -1;
+        }
+    }
+    return sign;
+}
+
+
+
+
+
 
 
 //Nhom ham chinh cua de bai
@@ -436,6 +559,68 @@ void find_ICS(double temp_left, double temp_right)         //Ham tim khoang phan
         x_old = check_sign(temp_left, 0);
         x = check_sign(temp_left + delta, 0);
         check = x*x_old;
-        
+        if (check < 0)
+        {
+            temp = temp_left;
+            dem = 0;
+            for (i = 0; i < 1001; i++)
+            {
+                if(check_sign(temp, 1) != check_sign(temp + delta/1001, 1))
+                {
+                    dem++;
+                }
+                temp = temp + delta/1001;
+            }
+            if (dem == 0)
+            {
+                phanly[count_].a = temp_left;
+                phanly[count_].b = temp_left + delta;
+                count_++;
+            }
+            else
+            {
+                printf("Trong khoang (%.2lf, %.2lf) co it nhat %d nghiem. Moi khao sat ham so.", temp_left, temp_left + delta, dem);
+                fprintf(fout, "\n\nTrong khoang (%.2lf, %.2lf) co it nhat %d nghiem. Moi khao sat ham so.", temp_left, temp_left + delta, dem);
+            }
+        }
+        temp_left = temp_left + delta;
+    }
+}
+
+int bisection_Method()
+{
+    float m;
+    double p, q, c, f_p, f_c;
+    int i = 0, check_sign_fp, check_sign_fc;
+    printf("\n\nVoi khoang phan ly nghiem (p,q) voi |p-q| <= m. Nhap vao so m: ");
+    fprintf(fout, "\n\nVoi khoang phan ly nghiem (p,q) voi |p-q| <= m. Nhap vao so m: ");
+    scanf("%f", &m);
+    fprintf(fout, "\nm = %f", m);
+
+    while (i < count_)
+    {
+        p = phanly[i].a;
+        q = phanly[i].b;
+
+        f_p = f(p);
+        check_sign_fp = check_sign(p, 0);
+
+        while(fabs(q - p) > m)
+        {
+            c = (p + q) / 2.0;
+            f_c = f(c);
+            check_sign_fc = check_sign(c, 0);
+            if(check_sign_fp != check_sign_fc)
+            {
+                q = c;
+            }
+            else
+            {
+                p = c;
+            }
+            phanly[i].a = p;
+            phanly[i].b = q;
+            i++;
+        }
     }
 }

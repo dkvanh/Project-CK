@@ -146,69 +146,74 @@ int main(){
     find_ICS(left, right);
     printf("\nKhoang phan ly: ");
     fprintf(fout, "\nKhoang phan ly: ");
-    printf("\n\t\t\t+-------|---------|---------+");
-    printf("\n\t\t\t| STT | a | b |");
-    printf("\n\t\t\t+-------|---------|---------+");
-    fprintf(fout, "\n\t\t\t+-------|---------|---------+");
-    fprintf(fout, "\n\t\t\t| STT | a | b |");
-    fprintf(fout, "\n\t\t\t+-------|---------|---------+");
+    printf("\n\t\t\t+---------|-----------|-----------+");
+    printf("\n\t\t\t|   STT   |     a     |     b     |");
+    printf("\n\t\t\t+---------|-----------|-----------+");
+    fprintf(fout, "\n\t\t\t+---------|-----------|-----------+");
+    fprintf(fout, "\n\t\t\t|   STT   |     a     |     b     |");
+    fprintf(fout, "\n\t\t\t+---------|-----------|-----------+");
     for(cnt = 0; cnt < count_; cnt++)
     {
     if(phanly[cnt].a < 0 && phanly[cnt].b < 0){
-    printf("\n\t\t\t| %d | %.3lf | %.3lf |", cnt, phanly[cnt].a, phanly[cnt].b);
-    fprintf(fout, "\n\t\t\t| %d | %.3lf | %.3lf |", cnt, phanly[cnt].a, phanly[cnt].b);
+    printf("\n\t\t\t|    %d    |   %.3lf   |   %.3lf   |", cnt, phanly[cnt].a, phanly[cnt].b);
+    fprintf(fout, "\n\t\t\t|    %d    |   %.3lf   |   %.3lf   |", cnt, phanly[cnt].a, phanly[cnt].b);
     }
     else if(phanly[cnt].a > 0 && phanly[cnt].b < 0){
-    printf("\n\t\t\t| %d | %.3lf | %.3lf |", cnt, phanly[cnt].a, phanly[cnt].b);
-    fprintf(fout, "\n\t\t\t| %d | %.3lf | %.3lf |", cnt, phanly[cnt].a, phanly[cnt].b);
+    printf("\n\t\t\t|    %d    |   %.3lf   |   %.3lf   |", cnt, phanly[cnt].a, phanly[cnt].b);
+    fprintf(fout, "\n\t\t\t|    %d    |   %.3lf   |   %.3lf   |", cnt, phanly[cnt].a, phanly[cnt].b);
     }
     else if(phanly[cnt].a < 0 && phanly[cnt].b > 0){
-    printf("\n\t\t\t| %d | %.3lf | %.3lf |", cnt, phanly[cnt].a, phanly[cnt].b);
-    fprintf(fout, "\n\t\t\t| %d | %.3lf | %.3lf |", cnt, phanly[cnt].a, phanly[cnt].b);
+    printf("\n\t\t\t|    %d    |   %.3lf   |   %.3lf   |", cnt, phanly[cnt].a, phanly[cnt].b);
+    fprintf(fout, "\n\t\t\t|    %d    |   %.3lf   |   %.3lf   |", cnt, phanly[cnt].a, phanly[cnt].b);
     }
     else
     {
-    printf("\n\t\t\t| %d | %.3lf | %.3lf |", cnt, phanly[cnt].a, phanly[cnt].b);
-    fprintf(fout, "\n\t\t\t| %d | %.3lf | %.3lf |", cnt, phanly[cnt].a, phanly[cnt].b);
+    printf("\n\t\t\t|    %d    |   %.3lf   |   %.3lf   |", cnt, phanly[cnt].a, phanly[cnt].b);
+    fprintf(fout, "\n\t\t\t|    %d    |   %.3lf   |   %.3lf   |", cnt, phanly[cnt].a, phanly[cnt].b);
     }
-    printf("\n\t\t\t+-------|---------|---------+");
-    fprintf(fout, "\n\t\t\t+-------|---------|---------+");
+    printf("\n\t\t\t+---------|-----------|-----------+");
+    fprintf(fout, "\n\t\t\t+---------|-----------|-----------+");
     }
     }
+    
+    
     else if(counter == 2)
     {
     bisection_Method();
     printf("\nKhoang phan ly sau khi thu hep: ");
     fprintf(fout, "\nKhoang phan ly sau khi thu hep: ");
-    printf("\n\t\t\t+-------|---------|---------+");
-    printf("\n\t\t\t| STT | a | b |");
-    printf("\n\t\t\t+-------|---------|---------+");
-    fprintf(fout, "\n\t\t\t+-------|---------|---------+");
-    fprintf(fout, "\n\t\t\t| STT | a | b |");
-    fprintf(fout, "\n\t\t\t+-------|---------|---------+");
+    printf("\n\t\t\t+---------|-----------|-----------+");
+    printf("\n\t\t\t|   STT   |     a     |     b     |");
+    printf("\n\t\t\t+---------|-----------|-----------+");
+    fprintf(fout, "\n\t\t\t+---------|-----------|-----------+");
+    fprintf(fout, "\n\t\t\t|   STT   |     a     |     b     |");
+    fprintf(fout, "\n\t\t\t+---------|-----------|-----------+");
     for(cnt = 0; cnt < count_; cnt++)
     {
     if(phanly[cnt].a < 0 && phanly[cnt].b < 0){
-    printf("\n\t\t\t| %d | %.3lf | %.3lf |", cnt, phanly[cnt].a, phanly[cnt].b);
-    fprintf(fout, "\n\t\t\t| %d | %.3lf | %.3lf |", cnt, phanly[cnt].a, phanly[cnt].b);
+    printf("\n\t\t\t|    %d    |   %.3lf   |   %.3lf   |", cnt, phanly[cnt].a, phanly[cnt].b);
+    fprintf(fout, "\n\t\t\t|    %d    |   %.3lf   |   %.3lf   |", cnt, phanly[cnt].a, phanly[cnt].b);
     }
     else if(phanly[cnt].a > 0 && phanly[cnt].b < 0){
-    printf("\n\t\t\t| %d | %.3lf | %.3lf |", cnt, phanly[cnt].a, phanly[cnt].b);
-    fprintf(fout, "\n\t\t\t| %d | %.3lf | %.3lf |", cnt, phanly[cnt].a, phanly[cnt].b);
+    printf("\n\t\t\t|    %d    |   %.3lf   |   %.3lf   |", cnt, phanly[cnt].a, phanly[cnt].b);
+    fprintf(fout, "\n\t\t\t|    %d    |   %.3lf   |   %.3lf   |", cnt, phanly[cnt].a, phanly[cnt].b);
     }
     else if(phanly[cnt].a < 0 && phanly[cnt].b > 0){
-    printf("\n\t\t\t| %d | %.3lf | %.3lf |", cnt, phanly[cnt].a, phanly[cnt].b);
-    fprintf(fout, "\n\t\t\t| %d | %.3lf | %.3lf |", cnt, phanly[cnt].a, phanly[cnt].b);
+    printf("\n\t\t\t|    %d    |   %.3lf   |   %.3lf   |", cnt, phanly[cnt].a, phanly[cnt].b);
+    fprintf(fout, "\n\t\t\t|    %d    |   %.3lf   |   %.3lf   |", cnt, phanly[cnt].a, phanly[cnt].b);
     }
     else
     {
-    printf("\n\t\t\t| %d | %.3lf | %.3lf |", cnt, phanly[cnt].a, phanly[cnt].b);
-    fprintf(fout, "\n\t\t\t| %d | %.3lf | %.3lf |", cnt, phanly[cnt].a, phanly[cnt].b);
+    printf("\n\t\t\t|    %d    |   %.3lf   |   %.3lf   |", cnt, phanly[cnt].a, phanly[cnt].b);
+    fprintf(fout, "\n\t\t\t|    %d    |   %.3lf   |   %.3lf   |", cnt, phanly[cnt].a, phanly[cnt].b);
     }
-    printf("\n\t\t\t+-------|---------|---------+");
-    fprintf(fout, "\n\t\t\t+-------|---------|---------+");
+    printf("\n\t\t\t+---------|-----------|-----------+");
+    fprintf(fout, "\n\t\t\t+---------|-----------|-----------+");
     }
     }
+
+
+
     else if(counter == 3)
     {
     Set1[0] = 7;
@@ -239,7 +244,7 @@ int main(){
     counter1++;
 
     }
-    else if(key1 == 72 && (counter1 <=1)){
+    else if(key1 == 72 && (counter1 <= 1)){
     counter1 = 3;
     }
     else if(key1 == 80 && (counter1 >= 3)){ 
@@ -498,18 +503,23 @@ void drawframe() {
     color(4);
     for (i = 0; i < 63; i++) {
         gotoxy(31 + i, 2);
-        printf("_");
+        putchar(205);
+        printf("%c", 205);
         gotoxy(31 + i, 4);
-        printf("_");
+        putchar(205);
+        printf("%c", 205);
         gotoxy(31 + i, 19);
-        printf("-");
+        putchar(205);
+        printf("%c", 205);
     }
     for (i = 0; i <= 15; i++) {
         gotoxy(30, 2);
         gotoxy(29, 3 + i);
-        printf("||");
-        gotoxy(94, 3 + i);
-        printf("||");
+        putchar(186);
+        printf("%c", 186);
+        gotoxy(95, 3 + i);
+        putchar(186);
+        printf("%c", 186);
     }
     color(7);
 }

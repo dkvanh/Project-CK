@@ -1,5 +1,6 @@
 #pragma once // tránh đụng độ thư viện khi gọi chồng file lên nhau
 #include <stdio.h>
+#include <iomanip>
 #include <conio.h>
 #include<ctime> /* thư viện hỗ trợ về thời gian thực */
 #include "windows.h" // thư viện này bá đạo lắm nhé - chứa nhiều đồ chơi nek - cứ tìm hiểu dần dần 
@@ -140,6 +141,27 @@ void resizeConsole(int width, int height)
 	MoveWindow(console, r.left, r.top, width, height, TRUE);
 }
 
+/*
+void printTexL(const std::string& text) {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+    // Lấy vị trí hiện tại của con trỏ
+    CONSOLE_SCREEN_BUFFER_INFO screenInfo;
+    GetConsoleScreenBufferInfo(hConsole, &screenInfo);
+    COORD pos = screenInfo.dwCursorPosition;
+
+    // Thiết lập vị trí mới với giá trị X cố định
+    pos.X = 38;
+	pos.Y+=1;
+
+    // Thiết lập vị trí con trỏ
+    SetConsoleCursorPosition(hConsole, pos);
+
+    // Hiển thị câu văn bản tại vị trí chỉ định
+    std::cout << text;
+}
+*/
+
 void printTex(const std::string& text) {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
@@ -148,12 +170,82 @@ void printTex(const std::string& text) {
     GetConsoleScreenBufferInfo(hConsole, &screenInfo);
     COORD pos = screenInfo.dwCursorPosition;
 
-    // Thiết lập vị trí mới với giá trị Y cố định
+    // Thiết lập vị trí mới với giá trị X cố định
     pos.X = 38;
 
     // Thiết lập vị trí con trỏ
     SetConsoleCursorPosition(hConsole, pos);
 
     // Hiển thị câu văn bản tại vị trí chỉ định
-    std::cout << text << std::endl;
+    std::cout << text;
 }
+
+void printNumL(double number) {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+    // Lấy vị trí hiện tại của con trỏ
+    CONSOLE_SCREEN_BUFFER_INFO screenInfo;
+    GetConsoleScreenBufferInfo(hConsole, &screenInfo);
+    COORD pos = screenInfo.dwCursorPosition;
+
+    // Thiết lập vị trí mới với giá trị X cố định
+    pos.X = 38;
+	pos.Y+=1;
+
+    // Thiết lập vị trí con trỏ
+    SetConsoleCursorPosition(hConsole, pos);
+
+    // Hiển thị giá trị số thực tại vị trí chỉ định
+    std::cout <<std::fixed << std::setprecision(4) <<number;
+}
+void printNum(double number) {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+    // Lấy vị trí hiện tại của con trỏ
+    CONSOLE_SCREEN_BUFFER_INFO screenInfo;
+    GetConsoleScreenBufferInfo(hConsole, &screenInfo);
+    COORD pos = screenInfo.dwCursorPosition;
+
+    // Thiết lập vị trí mới với giá trị X cố định
+	pos.X=38;
+
+    // Thiết lập vị trí con trỏ
+    SetConsoleCursorPosition(hConsole, pos);
+
+    // Hiển thị giá trị số thực tại vị trí chỉ định
+    std::cout <<std::fixed << std::setprecision(4) <<number;
+}
+
+void daucach(){
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+    // Lấy vị trí hiện tại của con trỏ
+    CONSOLE_SCREEN_BUFFER_INFO screenInfo;
+    GetConsoleScreenBufferInfo(hConsole, &screenInfo);
+    COORD pos = screenInfo.dwCursorPosition;
+
+    // Hàm hoạt động mô tả kí tự \t 
+	pos.X = ((pos.X-38)/10 +1) *10 +38;
+
+    // Thiết lập vị trí con trỏ
+    SetConsoleCursorPosition(hConsole, pos);
+
+}
+
+void xuongdong(){
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+    // Lấy vị trí hiện tại của con trỏ
+    CONSOLE_SCREEN_BUFFER_INFO screenInfo;
+    GetConsoleScreenBufferInfo(hConsole, &screenInfo);
+    COORD pos = screenInfo.dwCursorPosition;
+
+    // Thiết lập vị trí mới với giá trị X cố định
+	pos.X=38;
+	pos.Y+=1;
+
+    // Thiết lập vị trí con trỏ
+    SetConsoleCursorPosition(hConsole, pos);
+}
+
+
